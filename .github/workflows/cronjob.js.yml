@@ -2,7 +2,7 @@ name: Project Garden
 
 on:
   push:
-    branch: master
+    branches: master
   workflow_dispatch:
   schedule:
     - cron: '5 * * * *'
