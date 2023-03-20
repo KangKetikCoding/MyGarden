@@ -1,0 +1,27 @@
+name: Project Garden
+
+on:
+  push:
+    branch: master
+  workflow_dispatch:
+  schadule:
+    - cron: '5 * * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use NodeJs
+      uses: actions/setup-node@v1
+      with:
+        node-version: '14.x'
+    - name: Update README.md
+      run: node index.js > README.md
+    - name: Commit change & Push
+      run: |
+          git config user.name 'KangKetikCoding'
+          git config user.email 'kangketikcoding@gmail.com'
+          git commit -am "Update README.md"
+          git push
